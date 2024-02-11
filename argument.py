@@ -72,7 +72,7 @@ class Argument:
         else:
             raise Exception("Something went wrong")
         for key, value in xml_replace_dict.items():
-            self.xml_val = self.xml_val.replace(value, key)
+            self.xml_val = self.xml_val.replace(key, value)
 
     def set_number(self, arg_num):
         """

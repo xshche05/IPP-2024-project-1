@@ -44,7 +44,7 @@ def main():
     # Print program in xml format
     print(program, file=sys.stdout)
     # Print stats to stderr
-    print(f"STATS: {program.stat_list}", file=sys.stdout)
+    # print(f"STATS: {program.stat_list}", file=sys.stdout)
 
 
 if __name__ == "__main__":

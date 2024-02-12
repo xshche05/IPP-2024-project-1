@@ -94,7 +94,7 @@ class Argument:
         """
         :return: Returns argument in xml format
         """
-        arg = ET.Element(f'arg')
+        arg = ET.Element(f'arg{self.order}')
         arg.set('type', str(self.type))
         arg.text = self.xml_val
         return arg

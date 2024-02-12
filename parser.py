@@ -11,6 +11,10 @@ class Parser:
         self.__lines = data_lines
 
     def parse(self) -> Program:
+        """
+        Parse data from input data
+        :return: program object
+        """
         look_for_header = True  # Flag for header check
         program = Program()  # Create program object
         for line in self.__lines:

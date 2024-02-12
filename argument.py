@@ -44,6 +44,9 @@ class Argument:
 
     @property
     def possible_types(self) -> list[ArgType]:
+        """
+        :return: Returns list of possible argument types
+        """
         possible_arg_types = []
 
         for arg_type, regex in type_regex_dict.items():
@@ -65,6 +68,9 @@ class Argument:
         self.type_is_set = True
 
     def update_xml_val(self) -> None:
+        """
+        Update argument value for xml output
+        """
         if self.type == ArgType.VAR:
             self.xml_val = self.value.split('@', 1)[0].upper() + '@' + self.value.split('@')[1]
         elif self.type in [ArgType.INT, ArgType.BOOL, ArgType.STRING, ArgType.NIL]:

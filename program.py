@@ -1,8 +1,11 @@
 import xml.etree.ElementTree as ET
 
+from argparser import SysArgEnum
 from op_code import OpCode
 from instruction import Instruction
 import xml.dom.minidom as minidom
+
+from stat_group import StatGroup
 
 
 class Program:
@@ -27,6 +30,7 @@ class Program:
         if instruction.op_code == OpCode.LABEL:
             if self.__defined_labels.get(instruction.args[0].value) is not None:
                 self.__defined_labels[instruction.args[0].value].append(self.__instruction_counter)
+                # print("maybe error") TODO
             else:
                 self.__defined_labels[instruction.args[0].value] = [self.__instruction_counter]
         elif instruction.op_code in [OpCode.CALL, OpCode.JUMP, OpCode.JUMPIFEQ, OpCode.JUMPIFNEQ]:
@@ -82,6 +86,94 @@ class Program:
         xml_string = ET.tostring(self.xml, encoding='UTF-8', method='xml', xml_declaration=True).decode('utf-8')
         xml_string = minidom.parseString(xml_string).toprettyxml(indent=f"{' ' * 4}", encoding='UTF-8').decode('utf-8')
         return xml_string
+
+    @property
+    def loc(self) -> int:
+        """
+        :return: Returns number of instructions
+        """
+        return self.__instruction_counter
+
+    @property
+    def comments(self) -> int:
+        """
+        :return: Returns number of comments
+        """
+        return self.__comment_counter
+
+    @property
+    def labels(self) -> int:
+        """
+        :return: Returns number of labels
+        """
+        return len(self.__defined_labels)
+
+    @property
+    def jumps(self) -> int:
+        """
+        :return: Returns number of jump (conditional and unconditional), call and return instructions
+        """
+        jump_ops = [OpCode.JUMP, OpCode.JUMPIFEQ, OpCode.JUMPIFNEQ, OpCode.CALL, OpCode.RETURN]
+        return sum([self.__stat_list[op] for op in jump_ops])
+
+    @property
+    def fwjumps(self) -> int:
+        """
+        :return: Returns number of forward jumps
+        """
+        fw_jumps = 0
+        for label, orders in self.__used_labels.items():
+            for order in orders:
+                if label not in self.__defined_labels:
+                    continue
+                if order < self.__defined_labels[label][0]:
+                    fw_jumps += 1
+        return fw_jumps
+
+    @property
+    def backjumps(self) -> int:
+        """
+        :return: Returns number of backward jumps
+        """
+        back_jumps = 0
+        for label, orders in self.__used_labels.items():
+            if label not in self.__defined_labels:
+                continue
+            for order in orders:
+                if order > self.__defined_labels[label][0]:
+                    back_jumps += 1
+        return back_jumps
+
+    @property
+    def badjumps(self) -> int:
+        """
+        :return: Returns number of bad jumps
+        """
+        bad_jumps = 0
+        for label, orders in self.__used_labels.items():
+            if label not in self.__defined_labels:
+                bad_jumps += len(orders)
+        return bad_jumps
+
+    def load_stats_to(self, group: StatGroup) -> None:
+        """
+        Write statistics to group
+        :param group to write to
+        """
+        stat_map = {
+            SysArgEnum.LOC: self.loc,
+            SysArgEnum.COMMENTS: self.comments,
+            SysArgEnum.LABELS: self.labels,
+            SysArgEnum.JUMPS: self.jumps,
+            SysArgEnum.FWJUMPS: self.fwjumps,
+            SysArgEnum.BACKJUMPS: self.backjumps,
+            SysArgEnum.BADJUMPS: self.badjumps
+        }
+
+        for stat in group.stats:
+            if stat.arg not in stat_map.keys():
+                continue
+            stat.set_value(stat_map[stat.arg])
 
     def __str__(self) -> str:
         """

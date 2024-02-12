@@ -1,6 +1,8 @@
 import re
 from arg_type import ArgType
 from my_exceptions import ArgException
+import xml.etree.ElementTree as ET
+import xml.dom.minidom as minidom
 
 
 var_regex = r'^[LTG]F@[a-zA-Z0-9_\-&%*$!?]+$'
@@ -41,7 +43,7 @@ class Argument:
         self.xml_val = None
 
     @property
-    def possible_types(self):
+    def possible_types(self) -> list[ArgType]:
         possible_arg_types = []
 
         for arg_type, regex in type_regex_dict.items():
@@ -53,7 +55,7 @@ class Argument:
 
         return possible_arg_types
 
-    def set_type(self, arg_type):
+    def set_type(self, arg_type) -> None:
         """
         Set final argument type
         :param arg_type: final argument type
@@ -62,7 +64,7 @@ class Argument:
         self.type = arg_type
         self.type_is_set = True
 
-    def update_xml_val(self):
+    def update_xml_val(self) -> None:
         if self.type == ArgType.VAR:
             self.xml_val = self.value.split('@', 1)[0].upper() + '@' + self.value.split('@')[1]
         elif self.type in [ArgType.INT, ArgType.BOOL, ArgType.STRING, ArgType.NIL]:
@@ -74,14 +76,33 @@ class Argument:
         for key, value in xml_replace_dict.items():
             self.xml_val = self.xml_val.replace(key, value)
 
-    def set_number(self, arg_num):
+    def set_number(self, arg_num) -> None:
         """
         Set argument order number
         :param arg_num: argument order number
         """
         self.order = arg_num
 
-    def __str__(self):
+    @property
+    def xml(self) -> ET.Element:
+        """
+        :return: Returns argument in xml format
+        """
+        arg = ET.Element(f'arg')
+        arg.set('type', str(self.type))
+        arg.text = self.xml_val
+        return arg
+
+    @property
+    def xml_str(self) -> str:
+        """
+        :return: Returns argument in xml format
+        """
+        xml_string = ET.tostring(self.xml, encoding='UTF-8', method='xml', xml_declaration=True).decode('utf-8')
+        xml_string = minidom.parseString(xml_string).toprettyxml(indent=f"{' ' * 4}", encoding='UTF-8').decode('utf-8')
+        return xml_string
+
+    def __str__(self) -> str:
         """
         :return: Returns argument in xml format
         """

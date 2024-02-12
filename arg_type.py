@@ -11,7 +11,7 @@ class ArgType(Enum):
     VAR = 7
     SYMB = 8
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         """
         :param other: ArgType - required type
         :return: True if self is of the same type as other or if other is SYMB and self is VAR, INT, BOOL, STRING or NIL
@@ -22,8 +22,8 @@ class ArgType(Enum):
             return self.value == other.value
         return False
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name.lower()
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         return hash(self.value)

@@ -56,7 +56,7 @@ class OpCode(Enum):
     JUMPIFNEQ = 35
 
     @property
-    def params(self):
+    def params(self) -> list[ArgType]:
         """
         :return: Returns a list of ArgType that the OpCode needs
         """
@@ -80,5 +80,5 @@ class OpCode(Enum):
         else:
             raise OpCodeException("Unknown OpCode")
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name.upper()

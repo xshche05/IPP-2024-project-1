@@ -13,16 +13,6 @@ string_regex = r'^string@([^\x00-\x20\x23\x5C]|(\\[0-9]{3}))*$'
 nil_regex = r'^nil@nil$'
 type_regex = r'^(int|bool|string)$'
 
-
-xml_replace_dict = {
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    '\'': '&apos;'
-}
-
-
 type_regex_dict = {
     ArgType.INT: int_regex,
     ArgType.BOOL: bool_regex,
@@ -72,15 +62,13 @@ class Argument:
         Update argument value for xml output
         """
         if self.type == ArgType.VAR:
-            self.xml_val = self.value.split('@', 1)[0].upper() + '@' + self.value.split('@')[1]
+            self.xml_val = self.value.split('@', 1)[0].upper() + '@' + self.value.split('@', 1)[1]
         elif self.type in [ArgType.INT, ArgType.BOOL, ArgType.STRING, ArgType.NIL]:
             self.xml_val = self.value.split('@', 1)[1]  # Remove TYPE@ from param value
         elif self.type in [ArgType.LABEL, ArgType.TYPE]:
             self.xml_val = self.value  # Label is already in correct format
         else:
             raise Exception("Something went wrong")
-        # for key, value in xml_replace_dict.items():
-        #     self.xml_val = self.xml_val.replace(key, value)
 
     def set_number(self, arg_num) -> None:
         """

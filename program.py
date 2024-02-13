@@ -1,21 +1,21 @@
 import xml.etree.ElementTree as ET
-
-from sys_arg_parser import SysArgEnum
-from op_code import OpCode
-from instruction import Instruction
 import xml.dom.minidom as minidom
 
+from sys_arg_parser import SysArgEnum
+from op_code import InstructionSet
+from instruction import Instruction
 from stat_group import StatGroup
 
 
 class Program:
-    def __init__(self):
+    def __init__(self, op_codes: InstructionSet):
         self.__instruction_counter = 0
         self.__instruction_flow = []
-        self.__stat_list = {i: 0 for i in OpCode}
+        self.__stat_list = {i: 0 for i in op_codes}
         self.__defined_labels = {}
         self.__used_labels = {}
         self.__comment_counter = 0
+        self.__op_codes = op_codes
 
     def add_instruction(self, instruction: Instruction) -> None:
         """
@@ -27,20 +27,20 @@ class Program:
         instruction.set_order(self.__instruction_counter)
         self.__instruction_flow.append(instruction)
         self.__stat_list[instruction.op_code] += 1
-        if instruction.op_code == OpCode.LABEL:
+        if instruction.op_code in self.__op_codes.label_ops:
             if self.__defined_labels.get(instruction.args[0].value) is not None:
                 self.__defined_labels[instruction.args[0].value].append(self.__instruction_counter)
                 # print("maybe error") TODO
             else:
                 self.__defined_labels[instruction.args[0].value] = [self.__instruction_counter]
-        elif instruction.op_code in [OpCode.CALL, OpCode.JUMP, OpCode.JUMPIFEQ, OpCode.JUMPIFNEQ]:
+        elif instruction.op_code in self.__op_codes.label_jump_ops:
             if self.__used_labels.get(instruction.args[0].value) is not None:
                 self.__used_labels[instruction.args[0].value].append(self.__instruction_counter)
             else:
                 self.__used_labels[instruction.args[0].value] = [self.__instruction_counter]
 
     @property
-    def instructions_stat(self) -> dict[OpCode, int]:
+    def instructions_stat(self) -> dict[InstructionSet, int]:
         """
         :return: Returns dictionary with instructions statistics {OpCode: count}
         """
@@ -113,7 +113,8 @@ class Program:
         """
         :return: Returns number of jump (conditional and unconditional), call and return instructions
         """
-        jump_ops = [OpCode.JUMP, OpCode.JUMPIFEQ, OpCode.JUMPIFNEQ, OpCode.CALL, OpCode.RETURN]
+        jump_ops = self.__op_codes.jump_ops
+        print(self.__stat_list)
         return sum([self.__stat_list[op] for op in jump_ops])
 
     @property
@@ -121,6 +122,7 @@ class Program:
         """
         :return: Returns number of forward jumps
         """
+        print(self.__defined_labels)
         fw_jumps = 0
         for label, orders in self.__used_labels.items():
             for order in orders:

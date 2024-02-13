@@ -1,6 +1,3 @@
-import sys
-
-
 class Reader:
     def __init__(self, stream):
         self.__input_stream = stream

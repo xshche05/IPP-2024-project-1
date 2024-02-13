@@ -42,4 +42,6 @@ class Parser:
             instruction_obj.validate()
             # Add instruction to program flow
             program.add_instruction(instruction_obj)
+        if look_for_header:
+            raise HeaderException("Header not found")
         return program

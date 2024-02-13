@@ -5,7 +5,7 @@ import sys
 from argparser import ArgParser
 from parser import Parser
 from reader import Reader
-from my_exceptions import HeaderException, OpCodeException, ArgException
+from my_exceptions import HeaderException, OpCodeException, ArgException, SysArgException, StatGroupException
 
 
 def main():
@@ -36,6 +36,12 @@ if __name__ == "__main__":
     except ArgException as e:
         print(e, file=sys.stderr)
         sys.exit(23)
+    except SysArgException as e:
+        print(e, file=sys.stderr)
+        sys.exit(10)
+    except StatGroupException as e:
+        print(e, file=sys.stderr)
+        sys.exit(12)
     except Exception:
         print("Unknown error", file=sys.stderr)
         sys.exit(99)

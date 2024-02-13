@@ -79,8 +79,8 @@ class Argument:
             self.xml_val = self.value  # Label is already in correct format
         else:
             raise Exception("Something went wrong")
-        for key, value in xml_replace_dict.items():
-            self.xml_val = self.xml_val.replace(key, value)
+        # for key, value in xml_replace_dict.items():
+        #     self.xml_val = self.xml_val.replace(key, value)
 
     def set_number(self, arg_num) -> None:
         """

@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as ET
 
-from argparser import SysArgEnum
+from sys_arg_parser import SysArgEnum
 from op_code import OpCode
 from instruction import Instruction
 import xml.dom.minidom as minidom

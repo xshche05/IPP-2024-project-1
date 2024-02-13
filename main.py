@@ -2,7 +2,7 @@
 # --help, print help and return 0 code, NO OTHER PARAMS ALLOWED
 import sys
 
-from argparser import ArgParser
+from sys_arg_parser import ArgParser
 from parser import Parser
 from reader import Reader
 from my_exceptions import HeaderException, OpCodeException, ArgException, SysArgException, StatGroupException

@@ -155,6 +155,13 @@ class Program:
                 bad_jumps += len(orders)
         return bad_jumps
 
+    @property
+    def frequent(self) -> int:
+        """
+        :return: Returns most frequent instruction
+        """
+        return max([b for a, b in self.__stat_list.items()])
+
     def load_stats_to(self, group: StatGroup) -> None:
         """
         Write statistics to group
@@ -167,7 +174,8 @@ class Program:
             SysArgEnum.JUMPS: self.jumps,
             SysArgEnum.FWJUMPS: self.fwjumps,
             SysArgEnum.BACKJUMPS: self.backjumps,
-            SysArgEnum.BADJUMPS: self.badjumps
+            SysArgEnum.BADJUMPS: self.badjumps,
+            SysArgEnum.FREQUENT: self.frequent
         }
 
         for stat in group.stats:

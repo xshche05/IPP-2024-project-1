@@ -26,11 +26,21 @@ type_regex_dict = {
 
 class Argument:
     def __init__(self, value: str):
-        self.value = value
-        self.type_is_set = False
-        self.type = None
-        self.order = None
-        self.xml_val = None
+        self.__value = value
+        self.__type = None
+        self.__order = None
+        self.__xml_val = None
+
+    @property
+    def type(self):
+        return self.__type
+
+    @property
+    def value(self) -> str:
+        """
+        :return: Returns argument value
+        """
+        return self.__value
 
     @property
     def possible_types(self) -> list[ArgType]:
@@ -40,7 +50,7 @@ class Argument:
         possible_arg_types = []
 
         for arg_type, regex in type_regex_dict.items():
-            if re.match(regex, self.value):
+            if re.match(regex, self.__value):
                 possible_arg_types.append(arg_type)
 
         if len(possible_arg_types) == 0:
@@ -54,37 +64,36 @@ class Argument:
         :param arg_type: final argument type
         :return:
         """
-        self.type = arg_type
-        self.type_is_set = True
+        self.__type = arg_type
 
     def update_xml_val(self) -> None:
         """
         Update argument value for xml output
         """
-        if self.type == ArgType.VAR:
-            self.xml_val = self.value.split('@', 1)[0].upper() + '@' + self.value.split('@', 1)[1]
-        elif self.type in [ArgType.INT, ArgType.BOOL, ArgType.STRING, ArgType.NIL]:
-            self.xml_val = self.value.split('@', 1)[1]  # Remove TYPE@ from param value
-        elif self.type in [ArgType.LABEL, ArgType.TYPE]:
-            self.xml_val = self.value  # Label is already in correct format
+        if self.__type == ArgType.VAR:
+            self.__xml_val = self.__value.split('@', 1)[0].upper() + '@' + self.__value.split('@', 1)[1]
+        elif self.__type in [ArgType.INT, ArgType.BOOL, ArgType.STRING, ArgType.NIL]:
+            self.__xml_val = self.__value.split('@', 1)[1]  # Remove TYPE@ from param value
+        elif self.__type in [ArgType.LABEL, ArgType.TYPE]:
+            self.__xml_val = self.__value  # Label is already in correct format
         else:
             raise Exception("Something went wrong")
 
-    def set_number(self, arg_num) -> None:
+    def set_order(self, arg_num) -> None:
         """
         Set argument order number
         :param arg_num: argument order number
         """
-        self.order = arg_num
+        self.__order = arg_num
 
     @property
     def xml(self) -> ET.Element:
         """
         :return: Returns argument in xml format
         """
-        arg = ET.Element(f'arg{self.order}')
-        arg.set('type', str(self.type))
-        arg.text = self.xml_val
+        arg = ET.Element(f'arg{self.__order}')
+        arg.set('type', str(self.__type))
+        arg.text = self.__xml_val
         return arg
 
     @property
@@ -100,4 +109,4 @@ class Argument:
         """
         :return: Returns argument in xml format
         """
-        return f'''{" " * 8}<arg{self.order} type="{self.type}">{self.xml_val}</arg{self.order}>'''
+        return f'''{" " * 8}<arg{self.__order} type="{self.__type}">{self.__xml_val}</arg{self.__order}>'''

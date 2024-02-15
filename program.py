@@ -28,16 +28,16 @@ class Program:
         self.__instruction_flow.append(instruction)
         self.__stat_list[instruction.op_code] += 1
         if instruction.op_code in self.__op_codes.label_ops:
-            if self.__defined_labels.get(instruction.args[0].value) is not None:
-                self.__defined_labels[instruction.args[0].value].append(self.__instruction_counter)
+            if self.__defined_labels.get(instruction.label) is not None:
+                self.__defined_labels[instruction.label].append(self.__instruction_counter)
                 # print("maybe error") TODO
             else:
-                self.__defined_labels[instruction.args[0].value] = [self.__instruction_counter]
+                self.__defined_labels[instruction.label] = [self.__instruction_counter]
         elif instruction.op_code in self.__op_codes.label_jump_ops:
-            if self.__used_labels.get(instruction.args[0].value) is not None:
-                self.__used_labels[instruction.args[0].value].append(self.__instruction_counter)
+            if self.__used_labels.get(instruction.label) is not None:
+                self.__used_labels[instruction.label].append(self.__instruction_counter)
             else:
-                self.__used_labels[instruction.args[0].value] = [self.__instruction_counter]
+                self.__used_labels[instruction.label] = [self.__instruction_counter]
 
     @property
     def instructions_stat(self) -> dict[InstructionSet, int]:
@@ -169,6 +169,7 @@ class Program:
         Write statistics to group
         :param group to write to
         """
+
         stat_map = {
             SysArgEnum.LOC: self.loc,
             SysArgEnum.COMMENTS: self.comments,

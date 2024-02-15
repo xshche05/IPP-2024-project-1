@@ -1,23 +1,31 @@
 from arg_type import ArgType
-from my_exceptions import OpCodeException
+from my_exceptions import OpCodeException, HeaderException
 
 
 class OpCode:
     def __init__(self, op_code: str, params: list[ArgType]):
-        self.name = op_code
-        self.params = params
+        self.__name = op_code
+        self.__params = params
 
-    def __str__(self):
-        return self.name.upper()
+    @property
+    def name(self) -> str:
+        return self.__name
 
-    def __eq__(self, other):
+    @property
+    def params(self) -> list[ArgType]:
+        return self.__params
+
+    def __str__(self) -> str:
+        return self.__name.upper()
+
+    def __eq__(self, other) -> bool:
         if isinstance(other, str):
-            return self.name.upper() == other.upper()
+            return self.__name.upper() == other.upper()
         if isinstance(other, OpCode):
-            return self.name.upper() == other.name.upper()
+            return self.__name.upper() == other.__name.upper()
 
     def __hash__(self):
-        return hash(self.name.upper())
+        return hash(self.__name.upper())
 
 
 class InstructionSet:
@@ -88,6 +96,8 @@ class InstructionSet:
 
     def __getitem__(self, item: str) -> OpCode:
         if item.upper() not in self.__instruction_set:
+            if item == self.__header:
+                raise HeaderException("Expected instruction, got header")
             raise OpCodeException("Unknown OpCode")
         return getattr(self, item.upper())
 

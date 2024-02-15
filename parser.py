@@ -78,7 +78,10 @@ class Parser:
             if op_code not in [op.name for op in instruction_set]:
                 raise OpCodeException("Unknown OpCode")
             # Create instruction object
-            instruction_obj = Instruction(instruction_set[op_code], [Argument(arg) for arg in args])
+            instruction_obj = Instruction(instruction_set[op_code])
+            # add arguments to instruction
+            for arg in args:
+                instruction_obj.add_arg(Argument(arg))
             # Validate instruction arguments, if not valid, exit with error
             instruction_obj.validate()
             # Add instruction to program flow

@@ -75,8 +75,8 @@ class Parser:
             # Split instruction to op_code and args
             op_code, args = (instruction.split()[0].upper(), instruction.split()[1:])
             # Check if OpCode is valid, if not, exit with error
-            if op_code not in [op.name for op in instruction_set]:
-                raise OpCodeException("Unknown OpCode")
+            # if op_code not in [op.name for op in instruction_set]:
+            #     raise OpCodeException("Unknown OpCode")
             # Create instruction object
             instruction_obj = Instruction(instruction_set[op_code])
             # add arguments to instruction

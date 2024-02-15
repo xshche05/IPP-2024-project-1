@@ -1,6 +1,6 @@
 import re
 from arg_type import ArgType
-from my_exceptions import ArgException
+from my_exceptions import OtherSyntaxLexicalException
 import xml.etree.ElementTree as ET
 import xml.dom.minidom as minidom
 
@@ -54,7 +54,7 @@ class Argument:
                 possible_arg_types.append(arg_type)
 
         if len(possible_arg_types) == 0:
-            raise ArgException("Unknown argument type")
+            raise OtherSyntaxLexicalException("Unknown argument type")
 
         return possible_arg_types
 

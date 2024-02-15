@@ -6,7 +6,7 @@ class OpCodeException(Exception):
     pass
 
 
-class ArgException(Exception):
+class OtherSyntaxLexicalException(Exception):
     pass
 
 

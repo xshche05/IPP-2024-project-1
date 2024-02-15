@@ -5,7 +5,7 @@ import sys
 from sys_arg_parser import ArgParser
 from parser import Parser
 from reader import Reader
-from my_exceptions import HeaderException, OpCodeException, ArgException, SysArgException, StatGroupException
+from my_exceptions import HeaderException, OpCodeException, OtherSyntaxLexicalException, SysArgException, StatGroupException
 
 
 def main():
@@ -33,7 +33,7 @@ if __name__ == "__main__":
     except OpCodeException as e:
         print(e, file=sys.stderr)
         sys.exit(22)
-    except ArgException as e:
+    except OtherSyntaxLexicalException as e:
         print(e, file=sys.stderr)
         sys.exit(23)
     except SysArgException as e:

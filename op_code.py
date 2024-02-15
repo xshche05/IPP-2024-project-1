@@ -1,5 +1,5 @@
 from arg_type import ArgType
-from my_exceptions import OpCodeException, HeaderException
+from my_exceptions import OpCodeException, OtherSyntaxLexicalException
 
 
 class OpCode:
@@ -97,7 +97,7 @@ class InstructionSet:
     def __getitem__(self, item: str) -> OpCode:
         if item.upper() not in self.__instruction_set:
             if item == self.__header:
-                raise HeaderException("Expected instruction, got header")
+                raise OtherSyntaxLexicalException("Expected instruction, got header")
             raise OpCodeException("Unknown OpCode")
         return getattr(self, item.upper())
 

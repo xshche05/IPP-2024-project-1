@@ -5,7 +5,7 @@ import xml.dom.minidom as minidom
 from arg_type import ArgType
 from op_code import OpCode
 from argument import Argument
-from my_exceptions import ArgException
+from my_exceptions import OtherSyntaxLexicalException
 
 
 class Instruction:
@@ -62,7 +62,7 @@ class Instruction:
         :return: True if the arguments are valid, exception otherwise
         """
         if len(self.__args) != len(self.__op_code.params):
-            raise ArgException("Invalid number of arguments")
+            raise OtherSyntaxLexicalException("Invalid number of arguments")
 
         all_param_combinations = list(product(*[arg.possible_types for arg in self.__args]))
         need = list(self.__op_code.params)
@@ -72,7 +72,7 @@ class Instruction:
                     arg.set_type(arg_type)
                     arg.update_xml_val()
                 return True
-        raise ArgException("Opcode operands type mismatch")
+        raise OtherSyntaxLexicalException("Opcode operands type mismatch")
 
     @property
     def xml(self) -> ET.Element:

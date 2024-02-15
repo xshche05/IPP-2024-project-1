@@ -73,7 +73,7 @@ class Parser:
                 look_for_header = False
                 continue
             # Split instruction to op_code and args
-            op_code, args = (instruction.split()[0].upper(), instruction.split()[1:])
+            op_code, args = (instruction.split()[0], instruction.split()[1:])
             # Check if OpCode is valid, if not, exit with error
             # if op_code not in [op.name for op in instruction_set]:
             #     raise OpCodeException("Unknown OpCode")

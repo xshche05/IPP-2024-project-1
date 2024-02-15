@@ -1,3 +1,5 @@
+import re
+
 from arg_type import ArgType
 from my_exceptions import OpCodeException, OtherSyntaxLexicalException
 
@@ -26,6 +28,10 @@ class OpCode:
 
     def __hash__(self):
         return hash(self.__name.upper())
+
+
+# a-zA-Z0-9
+op_code_regex = r'^[a-zA-Z0-9]+$'
 
 
 class InstructionSet:
@@ -96,8 +102,8 @@ class InstructionSet:
 
     def __getitem__(self, item: str) -> OpCode:
         if item.upper() not in self.__instruction_set:
-            if item == self.__header:
-                raise OtherSyntaxLexicalException("Expected instruction, got header")
+            if not re.match(item, op_code_regex):
+                raise OtherSyntaxLexicalException("Got non opcode format input")
             raise OpCodeException("Unknown OpCode")
         return getattr(self, item.upper())
 

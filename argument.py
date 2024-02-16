@@ -12,6 +12,7 @@ bool_regex = r'^bool@(true|false)$'
 string_regex = r'^string@([^\x00-\x20\x23\x5C]|(\\[0-9]{3}))*$'
 nil_regex = r'^nil@nil$'
 type_regex = r'^(int|bool|string|float)$'
+float_regex = r'^float@0x[0-9a-fA-F]+p[+-]?\d+$'
 
 type_regex_dict = {
     ArgType.INT: int_regex,
@@ -20,7 +21,8 @@ type_regex_dict = {
     ArgType.NIL: nil_regex,
     ArgType.LABEL: label_regex,
     ArgType.TYPE: type_regex,
-    ArgType.VAR: var_regex
+    ArgType.VAR: var_regex,
+    ArgType.FLOAT: float_regex
 }
 
 
@@ -54,6 +56,7 @@ class Argument:
                 possible_arg_types.append(arg_type)
 
         if len(possible_arg_types) == 0:
+            print(self.__value)
             raise OtherSyntaxLexicalException("Unknown argument type")
 
         return possible_arg_types
@@ -72,7 +75,7 @@ class Argument:
         """
         if self.__type == ArgType.VAR:
             self.__xml_val = self.__value.split('@', 1)[0].upper() + '@' + self.__value.split('@', 1)[1]
-        elif self.__type in [ArgType.INT, ArgType.BOOL, ArgType.STRING, ArgType.NIL]:
+        elif self.__type in [ArgType.INT, ArgType.BOOL, ArgType.STRING, ArgType.NIL, ArgType.FLOAT]:
             self.__xml_val = self.__value.split('@', 1)[1]  # Remove TYPE@ from param value
         elif self.__type in [ArgType.LABEL, ArgType.TYPE]:
             self.__xml_val = self.__value  # Label is already in correct format

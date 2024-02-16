@@ -44,6 +44,23 @@ instruction_set.register_opcode("JUMPIFNEQ", [ArgType.LABEL, ArgType.SYMB, ArgTy
 instruction_set.register_opcode("EXIT", [ArgType.SYMB])
 instruction_set.register_opcode("DPRINT", [ArgType.SYMB])
 instruction_set.register_opcode("BREAK", [])
+instruction_set.register_opcode("INT2FLOAT", [ArgType.VAR, ArgType.SYMB])
+instruction_set.register_opcode("FLOAT2INT", [ArgType.VAR, ArgType.SYMB])
+instruction_set.register_opcode("MULS", [])
+instruction_set.register_opcode("ADDS", [])
+instruction_set.register_opcode("SUBS", [])
+instruction_set.register_opcode("IDIVS", [])
+instruction_set.register_opcode("LTS", [])
+instruction_set.register_opcode("GTS", [])
+instruction_set.register_opcode("EQS", [])
+instruction_set.register_opcode("ANDS", [])
+instruction_set.register_opcode("ORS", [])
+instruction_set.register_opcode("NOTS", [])
+instruction_set.register_opcode("INT2CHARS", [])
+instruction_set.register_opcode("STRI2INTS", [])
+instruction_set.register_opcode("JUMPIFEQS", [ArgType.LABEL], jump_op=True, label_jump_op=True)
+instruction_set.register_opcode("JUMPIFNEQS", [ArgType.LABEL], jump_op=True, label_jump_op=True)
+
 
 
 class Parser:

@@ -72,6 +72,8 @@ class Instruction:
                     arg.set_type(arg_type)
                     arg.update_xml_val()
                 return True
+        print(need)
+        print(self.__op_code)
         raise OtherSyntaxLexicalException("Opcode operands type mismatch")
 
     @property

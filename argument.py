@@ -11,7 +11,7 @@ int_regex = r'^int@[+-]?((\d+)|(0[xX][0-9a-fA-F]+)|(0[oO][0-7]+))$'
 bool_regex = r'^bool@(true|false)$'
 string_regex = r'^string@([^\x00-\x20\x23\x5C]|(\\[0-9]{3}))*$'
 nil_regex = r'^nil@nil$'
-type_regex = r'^(int|bool|string)$'
+type_regex = r'^(int|bool|string|float)$'
 
 type_regex_dict = {
     ArgType.INT: int_regex,

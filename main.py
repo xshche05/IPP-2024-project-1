@@ -24,28 +24,29 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
-    # try:
-    #     main()
-    # except HeaderException as e:
-    #     print(e, file=sys.stderr)
-    #     sys.exit(21)
-    # except OpCodeException as e:
-    #     print(e, file=sys.stderr)
-    #     sys.exit(22)
-    # except OtherSyntaxLexicalException as e:
-    #     print(e, file=sys.stderr)
-    #     sys.exit(23)
-    # except SysArgException as e:
-    #     print(e, file=sys.stderr)
-    #     sys.exit(10)
-    # except StatGroupException as e:
-    #     print(e, file=sys.stderr)
-    #     sys.exit(12)
-    # except Exception:
-    #     print("Unknown error", file=sys.stderr)
-    #     sys.exit(99)
-    # else:
-    #     sys.exit(0)
+    # main()
+    try:
+        main()
+    except HeaderException as e:
+        print(e, file=sys.stderr)
+        sys.exit(21)
+    except OpCodeException as e:
+        print(e, file=sys.stderr)
+        sys.exit(22)
+    except OtherSyntaxLexicalException as e:
+        print(e, file=sys.stderr)
+        sys.exit(23)
+    except SysArgException as e:
+        print(e, file=sys.stderr)
+        sys.exit(10)
+    except StatGroupException as e:
+        print(e, file=sys.stderr)
+        sys.exit(12)
+    except Exception as e:
+        print(e, file=sys.stderr)
+        print("Unknown error", file=sys.stderr)
+        sys.exit(99)
+    else:
+        sys.exit(0)
 
 

@@ -9,8 +9,8 @@ class ArgType(Enum):
     LABEL = 5
     TYPE = 6
     VAR = 7
-    FLOAT = 9
-    SYMB = 8
+    FLOAT = 8
+    SYMB = 9
 
     def __eq__(self, other) -> bool:
         """

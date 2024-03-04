@@ -62,6 +62,7 @@ class Instruction:
         :return: True if the arguments are valid, exception otherwise
         """
         if len(self.__args) != len(self.__op_code.params):
+            print(self.__op_code)
             raise OtherSyntaxLexicalException("Invalid number of arguments")
 
         all_param_combinations = list(product(*[arg.possible_types for arg in self.__args]))

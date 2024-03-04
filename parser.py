@@ -82,6 +82,7 @@ instruction_set.register_opcode("EXIT", [ArgType.SYMB])
 instruction_set.register_opcode("DPRINT", [ArgType.SYMB])
 instruction_set.register_opcode("BREAK", [])
 
+
 class Parser:
 
     def __init__(self, data_lines: list[str]):
@@ -104,16 +105,12 @@ class Parser:
                 continue
             # Check for header, if first non-empty (non_comment) line is not header, exit with error
             if look_for_header:
-                if instruction != instruction_set.header:
+                if instruction.lower() != instruction_set.header.lower():
                     raise HeaderException("Header not found")
                 look_for_header = False
                 continue
             # Split instruction to op_code and args
             op_code, args = (instruction.split()[0], instruction.split()[1:])
-            # Check if OpCode is valid, if not, exit with error
-            # if op_code not in [op.name for op in instruction_set]:
-            #     raise OpCodeException("Unknown OpCode")
-            # Create instruction object
             instruction_obj = Instruction(instruction_set[op_code])
             # add arguments to instruction
             for arg in args:

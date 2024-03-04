@@ -12,7 +12,7 @@ bool_regex = r'^bool@(true|false)$'
 string_regex = r'^string@([^\x00-\x20\x23\x5C]|(\\[0-9]{3}))*$'
 nil_regex = r'^nil@nil$'
 type_regex = r'^(int|bool|string|float)$'
-float_regex = r'^float@0x[0-9a-fA-F]+p[+-]?\d+$'
+float_regex = r'^float@[-]?0x[0-9a-fA-F]+(\.[0-9a-fA-F]+)?[pP][-+]?[0-9]+$'
 
 type_regex_dict = {
     ArgType.INT: int_regex,

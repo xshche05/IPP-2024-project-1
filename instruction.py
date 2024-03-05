@@ -58,7 +58,7 @@ class Instruction:
 
     def validate(self) -> bool:
         """
-        Validate instruction arguments, check if the number of arguments is correct and if the argument types are correct
+        Validate instruction arguments, check if the number of arguments is correct and the argument types are correct
         :return: True if the arguments are valid, exception otherwise
         """
         if len(self.__args) != len(self.__op_code.params):

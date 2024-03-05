@@ -5,7 +5,8 @@ import sys
 from sys_arg_parser import ArgParser
 from parser import Parser
 from reader import Reader
-from my_exceptions import HeaderException, OpCodeException, OtherSyntaxLexicalException, SysArgException, StatGroupException
+from my_exceptions import (HeaderException, OpCodeException,
+                           OtherSyntaxLexicalException, SysArgException, StatGroupException)
 
 
 def main():
@@ -48,5 +49,3 @@ if __name__ == "__main__":
         sys.exit(99)
     else:
         sys.exit(0)
-
-

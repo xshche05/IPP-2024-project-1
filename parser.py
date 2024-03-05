@@ -1,6 +1,6 @@
 from arg_type import ArgType
 from program import Program
-from my_exceptions import HeaderException, OpCodeException
+from my_exceptions import HeaderException
 from op_code import InstructionSet
 from instruction import Instruction
 from argument import Argument
@@ -14,8 +14,10 @@ instruction_set.register_opcode("CREATEFRAME", [])
 instruction_set.register_opcode("PUSHFRAME", [])
 instruction_set.register_opcode("POPFRAME", [])
 instruction_set.register_opcode("DEFVAR", [ArgType.VAR])
-instruction_set.register_opcode("CALL", [ArgType.LABEL], jump_op=True, label_jump_op=True)
-instruction_set.register_opcode("RETURN", [], jump_op=True)
+instruction_set.register_opcode("CALL", [ArgType.LABEL],
+                                jump_op=True, label_jump_op=True)
+instruction_set.register_opcode("RETURN", [],
+                                jump_op=True)
 
 instruction_set.register_opcode("PUSHS", [ArgType.SYMB])
 instruction_set.register_opcode("POPS", [ArgType.VAR])
@@ -68,14 +70,20 @@ instruction_set.register_opcode("GETCHAR", [ArgType.VAR, ArgType.SYMB, ArgType.S
 instruction_set.register_opcode("SETCHAR", [ArgType.VAR, ArgType.SYMB, ArgType.SYMB])
 
 instruction_set.register_opcode("TYPE", [ArgType.VAR, ArgType.SYMB])
-instruction_set.register_opcode("LABEL", [ArgType.LABEL], label_set_op=True)
-instruction_set.register_opcode("JUMP", [ArgType.LABEL], jump_op=True, label_jump_op=True)
+instruction_set.register_opcode("LABEL", [ArgType.LABEL],
+                                label_set_op=True)
+instruction_set.register_opcode("JUMP", [ArgType.LABEL],
+                                jump_op=True, label_jump_op=True)
 
-instruction_set.register_opcode("JUMPIFEQ", [ArgType.LABEL, ArgType.SYMB, ArgType.SYMB], jump_op=True, label_jump_op=True)
-instruction_set.register_opcode("JUMPIFNEQ", [ArgType.LABEL, ArgType.SYMB, ArgType.SYMB], jump_op=True, label_jump_op=True)
+instruction_set.register_opcode("JUMPIFEQ", [ArgType.LABEL, ArgType.SYMB, ArgType.SYMB],
+                                jump_op=True, label_jump_op=True)
+instruction_set.register_opcode("JUMPIFNEQ", [ArgType.LABEL, ArgType.SYMB, ArgType.SYMB],
+                                jump_op=True, label_jump_op=True)
 
-instruction_set.register_opcode("JUMPIFEQS", [ArgType.LABEL], jump_op=True, label_jump_op=True)
-instruction_set.register_opcode("JUMPIFNEQS", [ArgType.LABEL], jump_op=True, label_jump_op=True)
+instruction_set.register_opcode("JUMPIFEQS", [ArgType.LABEL],
+                                jump_op=True, label_jump_op=True)
+instruction_set.register_opcode("JUMPIFNEQS", [ArgType.LABEL],
+                                jump_op=True, label_jump_op=True)
 
 instruction_set.register_opcode("EXIT", [ArgType.SYMB])
 

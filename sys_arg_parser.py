@@ -6,7 +6,7 @@ from sys_arg import SysArg, SysArgEnum
 
 
 def print_help():
-    print("Help message")
+    print("Help message")  # TODO: Add help message
 
 
 stats_arg_regex = r'^--stats=.+$'
@@ -85,10 +85,3 @@ class ArgParser:
         if last_group is not None:
             groups.append(last_group)
         self.__stat_groups = groups.copy()
-
-
-if __name__ == '__main__':
-    parser = ArgParser(sys.argv[1:])
-    parser.parse_to_groups()
-    for group in parser.stat_groups:
-        print(group)

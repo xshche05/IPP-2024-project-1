@@ -80,21 +80,21 @@ class InstructionSet:
         return self.__header
 
     @property
-    def label_ops(self) -> list[str]:
+    def label_ops(self) -> list[OpCode]:
         """
         :return: Returns list of label operations
         """
         return self.__label_set_ops
 
     @property
-    def jump_ops(self) -> list[str]:
+    def jump_ops(self) -> list[OpCode]:
         """
         :return: Returns list of jump operations
         """
         return self.__jump_ops
 
     @property
-    def label_jump_ops(self) -> list[str]:
+    def label_jump_ops(self) -> list[OpCode]:
         """
         :return: Returns list of label jump operations
         """

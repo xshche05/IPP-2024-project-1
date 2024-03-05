@@ -6,7 +6,23 @@ from sys_arg import SysArg, SysArgEnum
 
 
 def print_help():
-    print("Help message")  # TODO: Add help message
+    msg = """
+Usage: python3 main.py [--help | [--stats=FILE [--loc | --comments | --labels | --jumps | --fwjumps | --backjumps | --badjumps | --frequent | --eol | --print=STRING] [--stats=FILE2 ...] ... ] 
+
+--help - print help message
+--stats=FILE - print statistics to file
+    --loc - print lines of code
+    --comments - print comments count
+    --labels - print labels count
+    --jumps - print jumps count
+    --fwjumps - print forward jumps count
+    --backjumps - print backward jumps count
+    --badjumps - print bad jumps count
+    --frequent - print most frequent instruction(s)
+    --eol - print EOL count
+    --print=STRING - print STRING
+    """
+    print(msg)
 
 
 stats_arg_regex = r'^--stats=.+$'
@@ -61,14 +77,14 @@ class ArgParser:
                     raise SysArgException("Help argument must be the only argument")
                 print_help()
                 sys.exit(0)
-            elif re.match(stats_arg_regex, arg):
+            elif re.fullmatch(stats_arg_regex, arg):
                 file_path = arg.split('=', 1)[1]
                 if last_group is not None:
                     groups.append(last_group)
                 last_group = StatGroup(file_path)
                 if last_group in groups:
                     raise StatGroupException("File path must be unique")
-            elif re.match(print_arg_regex, arg):
+            elif re.fullmatch(print_arg_regex, arg):
                 if last_group is None:
                     raise SysArgException("Print argument must be in statistics group")
                 last_group.add_stat(SysArg(SysArgEnum.PRINT, arg.split('=', 1)[1]))

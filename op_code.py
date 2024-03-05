@@ -102,9 +102,8 @@ class InstructionSet:
 
     def __getitem__(self, item: str) -> OpCode:
         if item.upper() not in self.__instruction_set:
-            if not re.match(op_code_regex, item):
+            if not re.fullmatch(op_code_regex, item):
                 raise OtherSyntaxLexicalException("Got non opcode format input")
-            print(item.upper())
             raise OpCodeException("Unknown OpCode")
         return getattr(self, item.upper())
 

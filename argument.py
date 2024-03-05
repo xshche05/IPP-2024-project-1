@@ -52,7 +52,7 @@ class Argument:
         possible_arg_types = []
 
         for arg_type, regex in type_regex_dict.items():
-            if re.match(regex, self.__value):
+            if re.fullmatch(regex, self.__value):
                 possible_arg_types.append(arg_type)
 
         if len(possible_arg_types) == 0:

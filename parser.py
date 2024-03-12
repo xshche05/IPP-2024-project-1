@@ -21,45 +21,45 @@ instruction_set.register_opcode("RETURN", [],
 
 instruction_set.register_opcode("PUSHS", [ArgType.SYMB])
 instruction_set.register_opcode("POPS", [ArgType.VAR])
-instruction_set.register_opcode("CLEARS", [])
+# instruction_set.register_opcode("CLEARS", [])
 
 instruction_set.register_opcode("ADD", [ArgType.VAR, ArgType.SYMB, ArgType.SYMB])
 instruction_set.register_opcode("SUB", [ArgType.VAR, ArgType.SYMB, ArgType.SYMB])
 instruction_set.register_opcode("MUL", [ArgType.VAR, ArgType.SYMB, ArgType.SYMB])
-instruction_set.register_opcode("DIV", [ArgType.VAR, ArgType.SYMB, ArgType.SYMB])
+# instruction_set.register_opcode("DIV", [ArgType.VAR, ArgType.SYMB, ArgType.SYMB])
 instruction_set.register_opcode("IDIV", [ArgType.VAR, ArgType.SYMB, ArgType.SYMB])
 
-instruction_set.register_opcode("ADDS", [])
-instruction_set.register_opcode("SUBS", [])
-instruction_set.register_opcode("MULS", [])
-instruction_set.register_opcode("DIVS", [])
-instruction_set.register_opcode("IDIVS", [])
+# instruction_set.register_opcode("ADDS", [])
+# instruction_set.register_opcode("SUBS", [])
+# instruction_set.register_opcode("MULS", [])
+# instruction_set.register_opcode("DIVS", [])
+# instruction_set.register_opcode("IDIVS", [])
 
 instruction_set.register_opcode("LT", [ArgType.VAR, ArgType.SYMB, ArgType.SYMB])
 instruction_set.register_opcode("GT", [ArgType.VAR, ArgType.SYMB, ArgType.SYMB])
 instruction_set.register_opcode("EQ", [ArgType.VAR, ArgType.SYMB, ArgType.SYMB])
 
-instruction_set.register_opcode("LTS", [])
-instruction_set.register_opcode("GTS", [])
-instruction_set.register_opcode("EQS", [])
+# instruction_set.register_opcode("LTS", [])
+# instruction_set.register_opcode("GTS", [])
+# instruction_set.register_opcode("EQS", [])
 
 instruction_set.register_opcode("AND", [ArgType.VAR, ArgType.SYMB, ArgType.SYMB])
 instruction_set.register_opcode("OR", [ArgType.VAR, ArgType.SYMB, ArgType.SYMB])
 instruction_set.register_opcode("NOT", [ArgType.VAR, ArgType.SYMB])
 
-instruction_set.register_opcode("ANDS", [])
-instruction_set.register_opcode("ORS", [])
-instruction_set.register_opcode("NOTS", [])
+# instruction_set.register_opcode("ANDS", [])
+# instruction_set.register_opcode("ORS", [])
+# instruction_set.register_opcode("NOTS", [])
 
-instruction_set.register_opcode("INT2FLOAT", [ArgType.VAR, ArgType.SYMB])
-instruction_set.register_opcode("FLOAT2INT", [ArgType.VAR, ArgType.SYMB])
+# instruction_set.register_opcode("INT2FLOAT", [ArgType.VAR, ArgType.SYMB])
+# instruction_set.register_opcode("FLOAT2INT", [ArgType.VAR, ArgType.SYMB])
 instruction_set.register_opcode("INT2CHAR", [ArgType.VAR, ArgType.SYMB])
 instruction_set.register_opcode("STRI2INT", [ArgType.VAR, ArgType.SYMB, ArgType.SYMB])
 
-instruction_set.register_opcode("INT2FLOATS", [])
-instruction_set.register_opcode("FLOAT2INTS", [])
-instruction_set.register_opcode("INT2CHARS", [])
-instruction_set.register_opcode("STRI2INTS", [])
+# instruction_set.register_opcode("INT2FLOATS", [])
+# instruction_set.register_opcode("FLOAT2INTS", [])
+# instruction_set.register_opcode("INT2CHARS", [])
+# instruction_set.register_opcode("STRI2INTS", [])
 
 instruction_set.register_opcode("READ", [ArgType.VAR, ArgType.TYPE])
 instruction_set.register_opcode("WRITE", [ArgType.SYMB])
@@ -80,10 +80,10 @@ instruction_set.register_opcode("JUMPIFEQ", [ArgType.LABEL, ArgType.SYMB, ArgTyp
 instruction_set.register_opcode("JUMPIFNEQ", [ArgType.LABEL, ArgType.SYMB, ArgType.SYMB],
                                 jump_op=True, label_jump_op=True)
 
-instruction_set.register_opcode("JUMPIFEQS", [ArgType.LABEL],
-                                jump_op=True, label_jump_op=True)
-instruction_set.register_opcode("JUMPIFNEQS", [ArgType.LABEL],
-                                jump_op=True, label_jump_op=True)
+# instruction_set.register_opcode("JUMPIFEQS", [ArgType.LABEL],
+#                                 jump_op=True, label_jump_op=True)
+# instruction_set.register_opcode("JUMPIFNEQS", [ArgType.LABEL],
+#                                 jump_op=True, label_jump_op=True)
 
 instruction_set.register_opcode("EXIT", [ArgType.SYMB])
 

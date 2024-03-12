@@ -11,4 +11,4 @@ odevzdani: rozsireni readme1.md $(PY_FILES)
 
 zip: odevzdani
 	dos2unix ./odevzdani/*
-	zip -r xshche05.zip odevzdani
+	cd odevzdani && zip ../xshche05.zip *

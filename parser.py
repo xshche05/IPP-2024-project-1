@@ -2,7 +2,7 @@ from arg_type import ArgType
 from program import Program
 from my_exceptions import HeaderException
 from op_code import InstructionSet
-from instruction import Instruction
+from instruction import InstructionBuilder
 from argument import Argument
 
 
@@ -119,13 +119,15 @@ class Parser:
                 continue
             # Split instruction to op_code and args
             op_code, args = (instruction.split()[0], instruction.split()[1:])
-            instruction_obj = Instruction(instruction_set[op_code])
+            instruction_builder = InstructionBuilder()
+            instruction_builder.set_op_code(instruction_set[op_code])
             # add arguments to instruction
             for arg in args:
-                instruction_obj.add_arg(Argument(arg))
-            # Validate instruction arguments, if not valid, exit with error
-            instruction_obj.validate()
+                instruction_builder.add_arg(Argument(arg))
             # Add instruction to program flow
+            instruction_builder.set_order(program.counter + 1)
+            instruction_obj = instruction_builder.build()
+            instruction_obj.validate()
             program.add_instruction(instruction_obj)
         if look_for_header:
             raise HeaderException("Header not found")

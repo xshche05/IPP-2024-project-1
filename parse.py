@@ -16,7 +16,7 @@ def main():
     reader.read_stream()  # Read input stream
     parser = Parser(reader.get_lines())  # Create parser object
     program = parser.parse()  # Parse input data
-    print(program, file=sys.stdout)  # Print program to stdout
+    print(program.xml_str, file=sys.stdout)  # Print program to stdout
 
     # Fill statistics
     for group in arg_parser.stat_groups:

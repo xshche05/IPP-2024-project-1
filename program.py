@@ -17,6 +17,10 @@ class Program:
         self.__comment_counter = 0
         self.__op_codes = op_codes
 
+    @property
+    def counter(self) -> int:
+        return self.__instruction_counter
+
     def add_instruction(self, instruction: Instruction) -> None:
         """
         Add instruction to the program flow
@@ -24,7 +28,6 @@ class Program:
         :return:
         """
         self.__instruction_counter += 1
-        instruction.set_order(self.__instruction_counter)
         self.__instruction_flow.append(instruction)
         self.__stat_list[instruction.op_code] += 1
         if instruction.op_code in self.__op_codes.label_ops:

@@ -9,11 +9,10 @@ from my_exceptions import OtherSyntaxLexicalException
 
 
 class Instruction:
-    def __init__(self, op_code: OpCode):
+    def __init__(self, op_code: OpCode, args: list[Argument], order: int):
         self.__op_code = op_code
-        self.__args = []
-        self.__order = None
-        self.__arg_count = 0
+        self.__args = args
+        self.__order = order
 
     @property
     def op_code(self) -> OpCode:
@@ -38,23 +37,6 @@ class Instruction:
             if arg.type == ArgType.LABEL:
                 return arg.value
         return None
-
-    def add_arg(self, arg: Argument) -> None:
-        """
-        Add argument to instruction
-        :param arg: argument to add
-        """
-        self.__arg_count += 1
-        arg.set_order(self.__arg_count)
-        self.__args.append(arg)
-
-    def set_order(self, order) -> None:
-        """
-        Set order of instruction for xml output
-        :param order: instruction order number
-        :return:
-        """
-        self.__order = order
 
     def validate(self) -> bool:
         """
@@ -100,3 +82,48 @@ class Instruction:
 
     def __str__(self) -> str:
         return self.xml_str
+
+
+class InstructionBuilder:
+    """
+    Class for instruction builder, used to build instruction using builder pattern
+    """
+    def __init__(self):
+        self.__op_code = None
+        self.__args = []
+        self.__order = None
+        self.__arg_count = 0
+
+    def add_arg(self, arg: Argument) -> None:
+        """
+        Add argument to instruction
+        :param arg: argument to add
+        """
+        self.__arg_count += 1
+        arg.set_order(self.__arg_count)
+        self.__args.append(arg)
+
+    def set_order(self, order) -> None:
+        """
+        Set order of instruction for xml output
+        :param order: instruction order number
+        :return:
+        """
+        self.__order = order
+
+    def set_op_code(self, op_code: OpCode) -> None:
+        """
+        Set instruction op_code
+        :param op_code: instruction op_code
+        """
+        self.__op_code = op_code
+
+    def build(self) -> Instruction:
+        """
+        Build instruction
+        :return:
+        """
+        return Instruction(self.__op_code, self.__args, self.__order)
+
+
+

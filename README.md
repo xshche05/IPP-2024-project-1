@@ -63,11 +63,11 @@ Testovací příklady nebudou uveřejněny.
 Hodnocení je individuálně vygenerováno pro každého studenta, doplněno o ručně vložené připomínky a následně \
 automaticky rozesláno na školní e-mail.
 
-Hodnocené části (nehodnocené části jsou vynechány): \
- 1) Automatické testy parse.php - základní. \
- 2) Automatické testy parse.php - registrovaná rozšíření (uvedená ve vašem souboru rozsireni). \
- 3) Manuální hodnocení rozšíření NVP (komentář je uveden u komentářů k dokumentaci). \
- 4) Případné malusy a bonusy (pozdní odevzdání, opravy zadání, ...). \
+Hodnocené části (nehodnocené části jsou vynechány):
+ 1) Automatické testy parse.php - základní.
+ 2) Automatické testy parse.php - registrovaná rozšíření (uvedená ve vašem souboru rozsireni).
+ 3) Manuální hodnocení rozšíření NVP (komentář je uveden u komentářů k dokumentaci).
+ 4) Případné malusy a bonusy (pozdní odevzdání, opravy zadání, ...).
  5) Hodnocení dokumentace readme1(.pdf/.md) a štábní kultury zdrojových kódů (především komentářů). Za bodovým hodnocením dokumentace je v závorkách 30% korelace vzhledem k hodnocení z části 1).
 
 

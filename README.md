@@ -51,24 +51,24 @@ For implementation was used one of the design patterns such as **Builder Pattern
 
 # Final results
 
-Následující procentuální hodnocení je FINÁLNÍ hodnocení Vaší úlohy č. 1. \
+Následující procentuální hodnocení je FINÁLNÍ hodnocení Vaší úlohy č. 1.
 
 Projekt byl nejdříve rozbalen a následně spuštěn s řadou hodnotících testů. \
 Testy jsou rozděleny do několika kategorií. Podle výsledků \
 jednotlivých testů byla stanovena procentuální úspěšnost Vašeho skriptu \
 v jednotlivých kategoriích a z těchto hodnot odvozeny body. \
 Do StudIS se importují body zaokrouhlené na jedno desetinné místo. \
-Testovací příklady nebudou uveřejněny. \
+Testovací příklady nebudou uveřejněny.
 
 Hodnocení je individuálně vygenerováno pro každého studenta, doplněno o ručně vložené připomínky a následně \
-automaticky rozesláno na školní e-mail. \
+automaticky rozesláno na školní e-mail.
 
 Hodnocené části (nehodnocené části jsou vynechány): \
  1) Automatické testy parse.php - základní. \
  2) Automatické testy parse.php - registrovaná rozšíření (uvedená ve vašem souboru rozsireni). \
  3) Manuální hodnocení rozšíření NVP (komentář je uveden u komentářů k dokumentaci). \
  4) Případné malusy a bonusy (pozdní odevzdání, opravy zadání, ...). \
- 5) Hodnocení dokumentace readme1(.pdf/.md) a štábní kultury zdrojových kódů (především komentářů). Za bodovým hodnocením dokumentace je v závorkách 30% korelace vzhledem k hodnocení z části 1). \
+ 5) Hodnocení dokumentace readme1(.pdf/.md) a štábní kultury zdrojových kódů (především komentářů). Za bodovým hodnocením dokumentace je v závorkách 30% korelace vzhledem k hodnocení z části 1).
 
 
  Ad 5) Následuje seznam zkratek, které se mohou vyskytnout v komentářích k hodnocení dokumentace a štábní kultury skriptů:
@@ -106,7 +106,7 @@ Vysvětlivky zkratek v dokumentaci: \
   SAZBA (jen pro informaci) = alespoň identifikátory proměnných a funkcí se patří sázet písmem s jednotnou šířkou písmen (např. font Courier) \
   NVP, EX = smysluplné a dokumentované využití objektového paradigmatu, návrhových vzorů (rozšíření NVP), nebo výjimek \
   NVPDOC = použití návrhového vzoru nebylo (dostatečně) dokumentováno/zdůvodněno \
-  OK = k dokumentaci byly nanejvýše nepodstatné připomínky \
+  OK = k dokumentaci byly nanejvýše nepodstatné připomínky
 
 
 Osobní reklamace budou primárně v pondělí 8. 4. 2024 10:00-11:30 v C229. Je možné vést reklamaci i přes e-mail, což budu vyřizovat dle časových možností (krivka@fit.vut.cz a !!v odpovědi zachovejte i text tohoto e-mailu!!). \
@@ -117,12 +117,12 @@ Vaše hodnocení části 2): 1,41 bodů \
 Vaše hodnocení části 3): 1,00 bodů \
   Komentář hodnocení části 3): \
 Vaše hodnocení části 5): 0,90 bodů (po 50% korelaci 0,90 bodů) \
-  Komentář hodnocení části 5) (srážky uváděny v minibodech, 1 bod = 100 minibodů): AUTHOR, CH (-10), NVP (+100) \
+  Komentář hodnocení části 5) (srážky uváděny v minibodech, 1 bod = 100 minibodů): AUTHOR, CH (-10), NVP (+100)
 
 Pokud jste obdrželi výsledek částí 1) mimo hodnotící interval, tak \
-bude oříznut, tak že získáte za implementaci alespoň 0 a ne více jak maximum bodů za daný skript. \
+bude oříznut, tak že získáte za implementaci alespoň 0 a ne více jak maximum bodů za daný skript.
 
-Dekomprimace archivu proběhla úspěšně. \
+Dekomprimace archivu proběhla úspěšně.
 
 Procentuální hodnocení jednotlivých kategorií skriptu parse.py: \
 Lexikální analýza (detekce chyb): 94 % \
@@ -130,4 +130,4 @@ Syntaktická analýza (detekce chyb): 100 % \
 Zpracování instrukcí (včetně chyb): 99 % \
 Zpracování netriviálních programů: 87 % \
 Rozšíření STATP 94 % \
-Celkem bez rozšíření: 97 % \
+Celkem bez rozšíření: 97 %
